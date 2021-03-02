@@ -1,3 +1,10 @@
 /node_modules/
 /.idea/
-/desc/
+/dist/
+.vscode/
+build/
+tmp/
+temp/
+/ormconfig.json
+
+.env

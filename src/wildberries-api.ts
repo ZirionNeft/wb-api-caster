@@ -70,8 +70,8 @@ export class WildberriesApi {
          stocks.lastChangeDate = e.lastChangeDate;
          stocks.supplierArticle = e.supplierArticle;
          stocks.techSize = e.techSize;
-         stocks.barcode = e.Barcode;
-         stocks.quantity = e.Quantity;
+         stocks.barcode = e.barcode;
+         stocks.quantity = e.quantity;
          stocks.isSupply = e.isSupply;
          stocks.isRealization = e.isRealization;
          stocks.quantityFull = e.quantityFull;
@@ -79,10 +79,10 @@ export class WildberriesApi {
          stocks.warehouseName = e.warehouseName;
          stocks.inWayToClient = e.inWayToClient;
          stocks.inWayFromClient = e.inWayFromClient;
-         stocks.nmId = e.nmid;
+         stocks.nmId = e.nmId;
          stocks.subject = e.subject;
          stocks.category = e.category;
-         stocks.daysOnSite = e.DaysOnSite;
+         stocks.daysOnSite = e.daysOnSite;
          stocks.brand = e.brand;
          stocks.SCCode = e.SCCode;
 
@@ -110,11 +110,11 @@ export class WildberriesApi {
          order.oblast = e.oblast;
          order.incomeId = e.incomeID;
          order.odId = e.odid;
-         order.nmId = e.nmid;
+         order.nmId = e.nmId;
          order.subject = e.subject;
          order.category = e.category;
          order.brand = e.brand;
-         order.isCancel = e.is_cancel;
+         order.isCancel = e.isCancel;
          order.cancelDt = e.cancel_dt;
          order.gNumber = e.gNumber;
 
@@ -130,7 +130,7 @@ export class WildberriesApi {
          const sales = new Sales();
 
          sales.number = e.Number;
-         sales.date = e.Date;
+         sales.date = e.date;
          sales.lastChangeDate = e.lastChangeDate;
          sales.supplierArticle = e.supplierArticle;
          sales.techSize = e.techSize;
@@ -150,9 +150,9 @@ export class WildberriesApi {
          sales.saleId = e.saleID;
          sales.odId = e.odid;
          sales.spp = e.spp;
-         sales.forPay = e.forpay;
-         sales.finishedPrice = e.finished_price;
-         sales.priceWithDisc = e.pricewithdisc;
+         sales.forPay = e.forPay;
+         sales.finishedPrice = e.finishedPrice;
+         sales.priceWithDisc = e.priceWithDisc;
          sales.nmId = e.nmId;
          sales.subject = e.subject;
          sales.category = e.category;
@@ -176,7 +176,7 @@ export class WildberriesApi {
          reportDetailByPeriod.rrdId = e.rrd_id;
          reportDetailByPeriod.giId = e.gi_id;
          reportDetailByPeriod.subjectName = e.subject_name;
-         reportDetailByPeriod.NMId = e.NM_id;
+         reportDetailByPeriod.NMId = e.nm_id;
          reportDetailByPeriod.brandName = e.brand_name;
          reportDetailByPeriod.saName = e.sa_name;
          reportDetailByPeriod.tsName = e.ts_name;
@@ -187,7 +187,7 @@ export class WildberriesApi {
          reportDetailByPeriod.costAmount = e.cost_amount;
          reportDetailByPeriod.retailPrice = e.retail_price;
          reportDetailByPeriod.retailAmount = e.retail_amount;
-         reportDetailByPeriod.retailCommission = e.retail_comission;
+         reportDetailByPeriod.retailCommission = e.retail_commission;
          reportDetailByPeriod.salePercent = e.sale_percent;
          reportDetailByPeriod.commissionPercent = e.commission_percent;
          reportDetailByPeriod.customerReward = e.customer_reward;

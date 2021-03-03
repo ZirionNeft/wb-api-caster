@@ -27,7 +27,7 @@ export class WildberriesApi {
          case "orders":
             return this.getOrdersData(date);
          case "reportDetailByPeriod":
-            return this.getReportDetailByPeriodData(date, true);
+            return this.getReportDetailByPeriodData(date);
          case "sales":
             return this.getSalesData(date);
          case "stocks":
@@ -163,8 +163,8 @@ export class WildberriesApi {
       });
    }
 
-   async getReportDetailByPeriodData(date: Date, isOlderThanThreeMonths: boolean = false): Promise<ReportDetailByPeriod[]> {
-      const data: any[] = await this.getData('reportDetailByPeriod', date, ['dateTo=' + new Date().toISOString(), isOlderThanThreeMonths ? 'flag=1' : '']);
+   async getReportDetailByPeriodData(date: Date): Promise<ReportDetailByPeriod[]> {
+      const data: any[] = await this.getData('reportDetailByPeriod', date, ['dateTo=' + new Date().toISOString()]);
 
       console.info(`[API-Method] RDBPD: received ${data.length} items. Saving into database...`);
       return data.map(e => {

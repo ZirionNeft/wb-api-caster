@@ -10,9 +10,9 @@ import {ReportDetailByPeriod} from "./entity/ReportDetailByPeriod";
 
 dotenv.config();
 
-const lastWeek = new Date(new Date().setDate(new Date().getDate()-7));
-const lastMonth = new Date(new Date().setMonth(new Date().getMonth()-1));
-const lastYear = new Date(new Date().setFullYear(new Date().getFullYear()-1))
+const lastWeek = (date) => new Date(new Date().setDate(date.getDate()-7));
+const lastMonth = (date) => new Date(new Date().setMonth(date.getMonth()-1));
+const lastYear = (date) => new Date(new Date().setFullYear(date.getFullYear()-1))
 
 const requests = [
    {
@@ -101,7 +101,7 @@ const main = async () => {
    console.info('[INFO] >>>>> Performing all API-methods for getting data for the last year because service is running up for the first time')
    for (const m of ['incomes', 'stocks', 'orders', 'sales', 'reportDetailByPeriod']) {
       try {
-         const res = await wb.performApiMethod(m as ApiMethod, lastYear);
+         const res = await wb.performApiMethod(m as ApiMethod, lastYear(new Date));
          await save(res, {
             'incomes': Incomes,
             'stocks': Stocks,
@@ -128,7 +128,7 @@ const main = async () => {
       const check = dateCheck && checkTime(method);
       if (check || (params.intervalFlag = !params?.intervalFlag)) {
          // get data for the latest month if days in params are equals
-         return wb.performApiMethod(method as ApiMethod, check ? lastMonth : lastWeek);
+         return wb.performApiMethod(method as ApiMethod, check ? lastMonth(new Date) : lastWeek(new Date));
       } else {
          console.log(`[INFO] ${method.toUpperCase()}: Not requested because date and time not matches or this request one is odd (30 min not passed)`);
       }
@@ -140,7 +140,7 @@ const main = async () => {
 
       try {
          // Update every 15 min
-         const incomesResult = await wb.getIncomesData(lastYear); // Get for last year because WB response is constant empty(?)
+         const incomesResult = await wb.getIncomesData(lastYear(new Date)); // Get for last year because WB response is constant empty(?)
          await save(incomesResult, Incomes, 'incomes' as ApiMethod);
       } catch (e) {
          console.error(e);
@@ -150,7 +150,7 @@ const main = async () => {
       try {
          // Update in const time
          if (checkTime('stocks')) {
-            const stocksResult = await wb.getStocksData(lastWeek);
+            const stocksResult = await wb.getStocksData(lastWeek(new Date));
             await save(stocksResult, Stocks, 'stocks' as ApiMethod);
          } else {
             console.log(`[INFO] STOCKS: Not requested because const time [${requests.find(e => e.name === 'stocks')?.time.map(e => e[0] + ':' + e[1])}] is not matches`)
@@ -175,7 +175,7 @@ const main = async () => {
 
       try {
          if (checkTime('reportDetailByPeriod')) {
-            const reportDetailsData = await wb.getReportDetailByPeriodData(lastWeek);
+            const reportDetailsData = await wb.getReportDetailByPeriodData(lastWeek(new Date));
             await save(reportDetailsData, ReportDetailByPeriod, 'reportDetailByPeriod' as ApiMethod);
          } else {
             console.log(`[INFO] RDBP: Not requested because const time [${requests.find(e => e.name === 'reportDetailByPeriod')?.time.map(e => e[0] + ':' + e[1])}] is not matches`)
